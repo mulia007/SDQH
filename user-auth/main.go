@@ -121,9 +121,5 @@ func loginUser(c echo.Context) error {
 
 	return c.JSON(http.StatusOK, map[string]string{
 		"message": "Login successful",
-
-		// Cek apakah username dan password cocok dengan data di database
-		// Cek apakah username dan password cocok dengan data di database
-		// Cek apakah username dan password cocok dengan data di database
 	})
 }
