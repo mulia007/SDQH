@@ -13,7 +13,7 @@ func ConnectDatabase() {
 		panic(err)
 	}
 
-	// db.AutoMigrate(&Users{}, &Admin{}, &Transaksi{}, &Waqaf_Sedeqah{})
+	db.AutoMigrate(&Users{}, &Admin{}, &Transaksi{}, &Waqaf_Sedeqah{})
 
 	DB = db
 }
