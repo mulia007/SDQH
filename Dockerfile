@@ -1,27 +1,18 @@
-FROM golang:1.17
+# Use an official Go alpine image as the base
+FROM golang:alpine
 
-## We create an /app directory within our
-## image that will hold our application source
-## files
-RUN mkdir /app
-
-## We specify that we now wish to execute 
-## any further commands inside our /app
-## directory
+# Set the working directory inside the container
 WORKDIR /app
 
-COPY go.mod /app
-COPY go.sum /app
+# Copy the Go modules manifest and download the dependencies
+COPY go.mod go.sum ./
 RUN go mod download
 
-## We copy everything in the root directory
-## into our /app directory
-ADD . /app
+# Copy the source code from the host machine to the container
+COPY . .
 
-## we run go build to compile the binary
-## executable of our Go program
+# Build the Go application
 RUN go build -o main .
 
-## Our start command which kicks off
-## our newly created binary executable
-CMD ["/app/main"]
+# Set the entry point for the container
+ENTRYPOINT ["./main"]
