@@ -30,7 +30,7 @@ func main() {
 	r.HandleFunc("/getkegiatan", kegiatancontroller.Index).Methods("GET")
 	r.HandleFunc("/getkegiatan/detail", kegiatancontroller.Detail).Methods("GET")
 	r.HandleFunc("/transaksi/create", transaksicontroller.CreateTransaksi).Methods("POST")
-	r.HandleFunc("/transaksi/tes", transaksicontroller.UploadFile).Methods("POST")
+	r.HandleFunc("/transaksi/upload", transaksicontroller.UploadFile).Methods("POST")
 
 	api := r.PathPrefix("/api").Subrouter()
 	api.HandleFunc("/data", datacontroller.Index).Methods("GET")
