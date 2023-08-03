@@ -1,4 +1,4 @@
-name: Deplooy
+name: Deploy
 on: [push]
 jobs:
 
@@ -14,7 +14,7 @@ jobs:
         key: ${{ secrets.KEY }}
         port: ${{ secrets.PORT }}
         script: |
-          cd app
+          cd SDQH
           git pull origin main
           go test -v ./..
           docker-compose down && docker-compose up --build -d
