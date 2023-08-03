@@ -1,4 +1,4 @@
-package authcontroller
+package admincontroller
 
 import (
 	"encoding/json"
@@ -15,7 +15,7 @@ import (
 
 func Login(w http.ResponseWriter, r *http.Request) {
 	// mengambil inputan json
-	var userInput models.Users
+	var userInput models.Admin
 	decoder := json.NewDecoder(r.Body)
 	if err := decoder.Decode(&userInput); err != nil {
 		response := map[string]string{"message": err.Error()}
@@ -25,7 +25,7 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	defer r.Body.Close()
 
 	// ambil data user berdasarkan username
-	var user models.Users
+	var user models.Admin
 	if err := models.DB.Where("username = ?", userInput.Username).First(&user).Error; err != nil {
 		switch err {
 		case gorm.ErrRecordNotFound:
@@ -81,7 +81,7 @@ func Login(w http.ResponseWriter, r *http.Request) {
 
 func Register(w http.ResponseWriter, r *http.Request) {
 	// mengambil inputan json
-	var userInput models.Users
+	var userInput models.Admin
 	decoder := json.NewDecoder(r.Body)
 	if err := decoder.Decode(&userInput); err != nil {
 		response := map[string]string{"message": err.Error()}

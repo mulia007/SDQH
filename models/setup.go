@@ -7,13 +7,15 @@ import (
 
 var DB *gorm.DB
 
+const DSN = "root:root123qq@tcp(sdqh-database.ckn7e9y6eoez.us-east-1.rds.amazonaws.com:3306)/sdqh?charset=utf8&parseTime=True&loc=Local"
+
 func ConnectDatabase() {
-	db, err := gorm.Open(mysql.Open("root:@tcp(localhost:3306)/sdqh"))
+	var err error
+	DB, err = gorm.Open(mysql.Open(DSN), &gorm.Config{})
 	if err != nil {
 		panic(err)
 	}
 
-	db.AutoMigrate(&User{})
+	DB.AutoMigrate(&Users{}, &Admin{}, &Transaksi{}, &Waqaf_Sedeqah{})
 
-	DB = db
 }
